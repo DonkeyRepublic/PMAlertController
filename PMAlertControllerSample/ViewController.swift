@@ -27,11 +27,11 @@ class ViewController: UIViewController {
     @IBAction func showAlert(_ sender: AnyObject) {
         let alertVC = PMAlertController(title: "Locate your device", description: "Enables access to your location: discover what you can do when you're traveling and what is available near you.", image: UIImage(named: "flag.png"), style: .alert) //Image by freepik.com, taken on flaticon.com
         
-        alertVC.addAction(PMAlertAction(title: "Cancel", style: .cancel, action: { () -> Void in
+        alertVC.addAction(PMAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, action: { () -> Void in
             print("Cancel")
         }))
         
-        alertVC.addAction(PMAlertAction(title: "Allow", style: .default, action: { () in
+        alertVC.addAction(PMAlertAction(title: "Allow", style: UIAlertActionStyle.default, action: { () in
             print("Allow")
         }))
         
@@ -42,11 +42,11 @@ class ViewController: UIViewController {
         
         let alertVC = PMAlertController(title: "Locate your device", description: "Enables access to your location: discover what you can do when you're traveling and what is available near you.", image: UIImage(named: "flag.png"), style: .walkthrough) //Image by freepik.com, taken on flaticon.com
         
-        alertVC.addAction(PMAlertAction(title: "Cancel", style: .cancel, action: { () -> Void in
+        alertVC.addAction(PMAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, action: { () -> Void in
             print("Cancel")
         }))
         
-        alertVC.addAction(PMAlertAction(title: "Allow", style: .default, action: { () in
+        alertVC.addAction(PMAlertAction(title: "Allow", style: UIAlertActionStyle.default, action: { () in
             print("Allow")
         }))
         
@@ -57,15 +57,15 @@ class ViewController: UIViewController {
         
         let alertVC = PMAlertController(title: "Locate your device", description: "Enables access to your location: discover what you can do when you're traveling and what is available near you.", image: UIImage(named: "flag.png"), style: .alert) //Image by freepik.com, taken on flaticon.com
         
-        alertVC.addAction(PMAlertAction(title: "Cancel", style: .cancel, action: { () -> Void in
+        alertVC.addAction(PMAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, action: { () -> Void in
             print("Cancel")
         }))
         
-        alertVC.addAction(PMAlertAction(title: "No Thanks", style: .cancel, action: { () in
+        alertVC.addAction(PMAlertAction(title: "No Thanks", style: UIAlertActionStyle.cancel, action: { () in
             print("No thanks")
         }))
         
-        alertVC.addAction(PMAlertAction(title: "Allow", style: .default, action: { () in
+        alertVC.addAction(PMAlertAction(title: "Allow", style: UIAlertActionStyle.default, action: { () in
             print("Allow")
         }))
         
@@ -75,15 +75,15 @@ class ViewController: UIViewController {
     @IBAction func showWalkthroughWith3Buttons(_ sender: AnyObject) {
         let alertVC = PMAlertController(title: "Locate your device", description: "Enables access to your location: discover what you can do when you're traveling and what is available near you.", image: UIImage(named: "flag.png"), style: .walkthrough) //Image by freepik.com, taken on flaticon.com
         
-        alertVC.addAction(PMAlertAction(title: "Cancel", style: .cancel, action: { () -> Void in
+        alertVC.addAction(PMAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, action: { () -> Void in
             print("Cancel")
         }))
         
-        alertVC.addAction(PMAlertAction(title: "No Thanks", style: .cancel, action: { () in
+        alertVC.addAction(PMAlertAction(title: "No Thanks", style: UIAlertActionStyle.cancel, action: { () in
             print("No thanks")
         }))
         
-        alertVC.addAction(PMAlertAction(title: "Allow", style: .default, action: { () in
+        alertVC.addAction(PMAlertAction(title: "Allow", style: UIAlertActionStyle.default, action: { () in
             print("Allow")
         }))
         
@@ -97,9 +97,9 @@ class ViewController: UIViewController {
             textField?.placeholder = "Location..."
         }
         
-        alertVC.addAction(PMAlertAction(title: "Cancel", style: .cancel))
+        alertVC.addAction(PMAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel))
         
-        alertVC.addAction(PMAlertAction(title: "Ok", style: .default, action: { () in
+        alertVC.addAction(PMAlertAction(title: "Ok", style: UIAlertActionStyle.default, action: { () in
             print (alertVC.textFields[0].text ?? "")
         }))
         

@@ -25,13 +25,14 @@ import UIKit
     @IBOutlet weak open var alertTitle: UILabel!
     @IBOutlet weak open var alertDescription: UILabel!
     @IBOutlet weak open var alertActionStackView: UIStackView!
+    let alertActionStackViewHorizontalButtonSeperator = UIView()
     @IBOutlet weak open var alertStackViewHeightConstraint: NSLayoutConstraint!
     open var ALERT_STACK_VIEW_HEIGHT : CGFloat = UIScreen.main.bounds.height < 568.0 ? 40 : 62 //if iphone 4 the stack_view_height is 40, else 62
     var animator : UIDynamicAnimator?
     
     open var textFields: [UITextField] = []
     
-    open var gravityDismissAnimation = true
+    open var gravityDismissAnimation = false
     open var dismissWithBackgroudTouch = false // enable touch background to dismiss. Off by default.
     
     //MARK: - Lifecycle
@@ -83,10 +84,23 @@ import UIKit
         if alertActionStackView.arrangedSubviews.count > 2 || hasTextFieldAdded(){
             alertStackViewHeightConstraint.constant = ALERT_STACK_VIEW_HEIGHT * CGFloat(alertActionStackView.arrangedSubviews.count)
             alertActionStackView.axis = .vertical
+            alertActionStackViewHorizontalButtonSeperator.isHidden = true
         }
         else{
             alertStackViewHeightConstraint.constant = ALERT_STACK_VIEW_HEIGHT
             alertActionStackView.axis = .horizontal
+
+            if alertActionStackView.arrangedSubviews.count == 2 {
+                let seperatorView = alertActionStackViewHorizontalButtonSeperator
+                seperatorView.translatesAutoresizingMaskIntoConstraints = false
+                seperatorView.isHidden = false
+                self.view.addSubview(seperatorView)
+                seperatorView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2)
+                seperatorView.widthAnchor.constraint(equalToConstant: 1).isActive = true
+                seperatorView.heightAnchor.constraint(equalTo: alertActionStackView.heightAnchor, multiplier: 1).isActive = true
+                seperatorView.centerXAnchor.constraint(equalTo: alertActionStackView.centerXAnchor).isActive = true
+                seperatorView.centerYAnchor.constraint(equalTo: alertActionStackView.centerYAnchor).isActive = true
+            }
         }
         
         alertAction.addTarget(self, action: #selector(PMAlertController.dismissAlertController(_:)), for: .touchUpInside)
@@ -103,7 +117,7 @@ import UIKit
             return
         }
         
-        self.animateDismissWithGravity(.cancel)
+        self.animateDismissWithGravity(PMDefaultAlertActionStyle.cancel)
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -160,10 +174,10 @@ import UIKit
     
     //MARK: - Animations
     
-    @objc fileprivate func animateDismissWithGravity(_ style: PMAlertActionStyle){
+    fileprivate func animateDismissWithGravity(_ style: PMAlertActionStyleType){
         if gravityDismissAnimation == true{
             var radian = Double.pi
-            if style == .default {
+            if style.dismissAnimation == .confirm {
                 radian = 2 * Double.pi
             }else{
                 radian = -2 * Double.pi
